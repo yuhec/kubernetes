@@ -1,0 +1,24 @@
+- hosts: k8s-cluster:etcd:calico-rr
+  gather_facts: false
+  vars:
+    ansible_ssh_pipelining: false
+  roles:
+    - { role: kubespray-defaults}
+    - { role: bootstrap-os, tags: bootstrap-os}
+
+- hosts: k8s-cluster:etcd
+  tasks:
+    - name: "Stop auto-reboot"
+      service:
+        name: locksmithd
+        state: stopped
+
+- name: Setup kubernetes cluster
+  import_playbook: ../vendor/kubespray/cluster.yml
+
+- hosts: k8s-cluster:etcd
+  tasks:
+    - name: "Restore auto-reboot"
+      service:
+        name: locksmithd
+        state: started
