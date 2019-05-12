@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-quota
+spec:
+  selector:
+    matchLabels:
+      app: quota-demo
+  replicas: 10
+  template:
+    metadata:
+      labels:
+        app: quota-demo
+    spec:
+      containers:
+      - name: pod-quota-ctr
+        image: dockercloud/hello-world

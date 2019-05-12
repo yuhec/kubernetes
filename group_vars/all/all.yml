@@ -89,3 +89,11 @@ loadbalancer_apiserver_healthcheck_port: 8081
 ## Set Pypi repo and cert accordingly
 # pyrepo_index: https://pypi.example.com/simple
 # pyrepo_cert: /etc/ssl/certs/ca-certificates.crt
+
+kube_controller_cpu_requests: 20m
+kube_scheduler_cpu_requests: 20m
+kube_apiserver_cpu_requests: 20m
+dashboard_cpu_requests: 20m
+dns_cpu_requests: 20m
+calico_node_cpu_requests: 20m
+calicoctl_cpu_requests: 20m
